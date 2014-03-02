@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from posta.forms import MailForm
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from posta.models import Mail
 
 def index(request):
     context = RequestContext(request)
@@ -26,5 +27,17 @@ def about(request):
 def schedule(request):
     return render(request, 'schedule.html')
 
-def mail(request):
-    return render(request, 'mail.html')
+def mail(request, name_url):
+    context = RequestContext(request)
+
+    name = name_url.replace('_', ' ')
+    context_dict = {'name' : name }
+    try:
+        name = Mail.objects.get(name=name)
+        context_dict['name'] = name
+    except Mail.DoesNotExist:
+        pass
+    return render_to_response('posta/mail.html', context_dict, context)
+
+
+
