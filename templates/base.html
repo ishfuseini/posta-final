@@ -39,19 +39,19 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/posta/">Posta</a>
+          <a class="navbar-brand" href="/">Posta</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/posta/">Home</a></li>
-            <li><a href="/posta/about/">About</a></li>
-            <li><a href="/posta/schedule">Schedule</a></li>
-            <li><a href="/posta/mail">Mail</a></li>
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="{% url "posta.about" %}">About</a></li>
+            <li><a href="{% url "posta.schedule" %}">Schedule</a></li>
+            <li><a href="{% url "posta.mail" %}">Mail</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
           
             {% if user.is_authenticated %}
-            <li><a href="/accounts/logout">Register</a></li>
+            <li><a href="/accounts/logout">Logout</a></li>
             {% else %}
             <li><a href="/accounts/register">Register</a></li>
             <li><a href="/accounts/login">Login</a></li>

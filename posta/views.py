@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from posta.forms import MailForm
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.contrib.auth.decorators import login_required
 from posta.models import Mail
 
 def index(request):
@@ -27,17 +28,25 @@ def about(request):
 def schedule(request):
     return render(request, 'schedule.html')
 
-def mail(request, name_url):
-    context = RequestContext(request)
+@login_required
+def mail(request):
+    return render_to_response('mail.html', context_dict, context)
+  
+@login_required
+def mail_create(request):
+    #use your MailForm here
+    return ""
 
-    name = name_url.replace('_', ' ')
-    context_dict = {'name' : name }
-    try:
-        name = Mail.objects.get(name=name)
-        context_dict['name'] = name
-    except Mail.DoesNotExist:
-        pass
-    return render_to_response('posta/mail.html', context_dict, context)
+@login_required
+def mail_edit(request, mail_id):
+    #use your MailForm here
+    return ""
 
-
-
+@login_required
+def mail_compose(request, mail_id):
+    #we'll do this later usiny tinymce or ckeditor
+    return ""
+  
+@login_required  
+def mail_submit(request, mail_id):
+    return ""

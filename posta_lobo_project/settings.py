@@ -50,7 +50,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'posta',
-    'south',
     'registration',
 )
 
@@ -109,3 +108,5 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(PROJECT_PATH,'media')
 
 ACCOUNT_ACTIVATION_DAYS = 7
+
+LOGIN_REDIRECT_URL = '/'

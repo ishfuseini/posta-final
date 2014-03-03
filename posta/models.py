@@ -17,7 +17,7 @@ class Mail(models.Model):
     template = models.ForeignKey('Template')
     subject_line = models.CharField(max_length=140)
     mail_body = models.TextField()
-    status = models.IntegerField(choices=STATUS_CHOICES,default=DRAFT)
+    status = models.IntegerField(choices=STATUS_CHOICES, default=DRAFT)
 
 class Template(models.Model):
     template_body = models.TextField()
