@@ -7,6 +7,19 @@ from django.contrib.auth.decorators import login_required
 from posta.models import Mail
 
 def index(request):
+
+    return render(request, 'index.html')
+
+
+def about(request):
+    return render(request, 'about.html')
+
+def schedule(request):
+    return render(request, 'schedule.html')
+
+@login_required
+def mail(request):
+  
     context = RequestContext(request)
 
     if request.method == 'POST':
@@ -19,18 +32,8 @@ def index(request):
             print form.errors
     else:
         form = MailForm()
-    return render_to_response('index.html', {'form': form}, context)
-
-
-def about(request):
-    return render(request, 'about.html')
-
-def schedule(request):
-    return render(request, 'schedule.html')
-
-@login_required
-def mail(request):
-    return render_to_response('mail.html', context_dict, context)
+        
+    return render_to_response('mail.html', {'form' : form}, context)
   
 @login_required
 def mail_create(request):

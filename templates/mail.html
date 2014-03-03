@@ -5,7 +5,16 @@
 {% block body_block %}
 
 <div class="page-header">
- 
+  
+  <form id="mail_form" method="post" action="/mail/">
+  {% csrf_token %}
+
+  {{ form.as_p}}
+
+
+
+  <input type="submit" name="submit" value="Create Mail" />
+  </form>
 </div>
 
 

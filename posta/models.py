@@ -21,6 +21,7 @@ class Mail(models.Model):
 
 class Template(models.Model):
     template_body = models.TextField()
+    pass
 
 
 
