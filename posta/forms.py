@@ -14,6 +14,11 @@ class MailForm(forms.ModelForm):
         model = Mail
         fields = ('name','subject_line','target','date_scheduled','template')
 
+class MailEditForm(forms.ModelForm):
+	class Meta:
+	model = Mail
+	fields = ('subject_line','target','date_scheduled','template')
+
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
     
