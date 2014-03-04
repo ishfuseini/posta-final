@@ -9,15 +9,18 @@ class MailForm(forms.ModelForm):
     date_scheduled = forms.DateField(help_text="When do you need this email sent?",
                                      widget=forms.TextInput(attrs={'id':'datepicker'}))    
     template = forms.ModelChoiceField(queryset=Template.objects.all(), help_text="Select a Template")
+    mail_body = forms.CharField(widget=forms.HiddenInput(), initial=0)
 
     class Meta:
         model = Mail
-        fields = ('name','subject_line','target','date_scheduled','template')
+        fields = ('name','subject_line','target','date_scheduled','template', 'mail_body')
 
 class MailEditForm(forms.ModelForm):
-	class Meta:
-	model = Mail
-	fields = ('subject_line','target','date_scheduled','template')
+    pass
+
+    class Meta:
+        model = Mail
+    	fields = ('subject_line','target','date_scheduled','template')
 
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())

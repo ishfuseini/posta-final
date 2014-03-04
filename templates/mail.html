@@ -16,15 +16,23 @@
         </tr>
       </thead>
         {% if emails %}
-   
+    {% for mail in emails %}
     <tr>
+    	<td>
+    		{{ mail.id}}
+    	</td>
+
       <td>
+      	   {{ mail.name }}
       </td>
-            {% for mail in emails %}
+           
       <td>
-         {{ mail.name }}
+           {{ mail.date_scheduled }}
       </td>
-         {% endfor %}
+      <td>
+      	   {{ mail.status }}
+      </td>
+      
      
       
      
@@ -33,6 +41,7 @@
             
 
     </tr>
+       {% endfor %}
 {% endif %}
    
   </table>

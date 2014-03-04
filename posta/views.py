@@ -49,7 +49,7 @@ def mail_edit(request, mail_id):
 	if request.method == 'POST':
 		form = MailEditForm(request.POST)
 
-		if form.is_valid(0:
+		if form.is_valid(0):
 			form.save(commit=True)
 			return mail_compose(request, mail_id)
 		else:
