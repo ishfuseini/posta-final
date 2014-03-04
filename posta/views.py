@@ -19,7 +19,14 @@ def schedule(request):
 
 @login_required
 def mail(request):
+    context = RequestContext(request)
+    #Pass Current Emails to Template
+    mail_name = Mail.objects.all()
+    context_dict = {'emails' : mail_name }      
+    return render_to_response('mail.html', context_dict, context)
   
+@login_required
+def mail_create(request):
     context = RequestContext(request)
 
     if request.method == 'POST':
@@ -27,18 +34,13 @@ def mail(request):
 
         if form.is_valid():
             form.save(commit=True)
-            return index(request)
+            return mail_compose(request, mail_id)
         else:
             print form.errors
     else:
         form = MailForm()
         
-    return render_to_response('mail.html', {'form' : form}, context)
-  
-@login_required
-def mail_create(request):
-    #use your MailForm here
-    return ""
+    return render_to_response('create.html', {'form' : form}, context)
 
 @login_required
 def mail_edit(request, mail_id):

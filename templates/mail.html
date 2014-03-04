@@ -5,16 +5,43 @@
 {% block body_block %}
 
 <div class="page-header">
+
+  <table class="table">
+    <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Date Scheduled</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+        {% if emails %}
+   
+    <tr>
+      <td>
+      </td>
+            {% for mail in emails %}
+      <td>
+         {{ mail.name }}
+      </td>
+         {% endfor %}
+     
+      
+     
+     
+     
+            
+
+    </tr>
+{% endif %}
+   
+  </table>
+
+
+
   
-  <form id="mail_form" method="post" action="/mail/">
-  {% csrf_token %}
-
-  {{ form.as_p}}
-
-
-
-  <input type="submit" name="submit" value="Create Mail" />
-  </form>
+<a type="button" class="btn btn-primary" href="{% url "posta.mail.create" %}"> Create an Email </a>
+  
 </div>
 
 
