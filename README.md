@@ -1,1 +1,1 @@
-Posta is an Email Templating Tool to help manage E-Mail Marketing Campaigns
+Posta is an easy way to stakeholders to spec email campaigns
