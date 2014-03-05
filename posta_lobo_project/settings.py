@@ -22,7 +22,7 @@ STATIC_PATH = os.path.join(PROJECT_PATH, 'static')
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.mandrillapp.com'
 EMAIL_HOST_USER = 'fuseini@timberwolves.com'
-EMAIL_HOST_PASSWORD = 'mZu3E5D-FPH6P8SgVrph7A'
+EMAIL_HOST_PASSWORD = 'lol'
 EMAIL_PORT = 587
 
 # Quick-start development settings - unsuitable for production
