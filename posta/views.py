@@ -44,7 +44,23 @@ def mail_create(request):
 
 @login_required
 def mail_edit(request, mail_id):
+<<<<<<< HEAD
 	return ""	
+=======
+	context = RequestContext(request)
+
+	if request.method == 'POST':
+		form = MailEditForm(request.POST)
+
+		if form.is_valid(0):
+			form.save(commit=True)
+			return mail_compose(request, mail_id)
+		else:
+			print form.errors
+	else:
+		form = MailEditForm()
+	return render_to_response('edit.html', {'form' : form}, context)	
+>>>>>>> ec54e5ec2cf2a1c0d7218e4e75de890e8bc9c366
 
 @login_required
 def mail_compose(request, mail_id):
