@@ -1,15 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from posta.forms import MailForm
+from posta.forms import MailCreateForm
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
-from posta.models import Mail
+from posta.models import *
+from django.contrib.formtools.preview import FormPreview
 
 def index(request):
-
     return render(request, 'index.html')
-
 
 def about(request):
     return render(request, 'about.html')
@@ -22,51 +21,24 @@ def mail(request):
     context = RequestContext(request)
     #Pass Current Emails to Template
     mail_name = Mail.objects.all()
-    context_dict = {'emails' : mail_name }      
+    context_dict = {'emails' : mail_name } 
+    for mail in mail_name:    
+        mail.url = mail.id
     return render_to_response('mail.html', context_dict, context)
+
   
 @login_required
 def mail_create(request):
     context = RequestContext(request)
-
     if request.method == 'POST':
-        form = MailForm(request.POST)
+        form = MailCreateForm(request.POST)
 
         if form.is_valid():
             form.save(commit=True)
-            return mail_compose(request, mail_id)
+            return mail(request)
         else:
             print form.errors
     else:
-        form = MailForm()
+        form = MailCreateForm()
         
     return render_to_response('create.html', {'form' : form}, context)
-
-@login_required
-def mail_edit(request, mail_id):
-<<<<<<< HEAD
-	return ""	
-=======
-	context = RequestContext(request)
-
-	if request.method == 'POST':
-		form = MailEditForm(request.POST)
-
-		if form.is_valid(0):
-			form.save(commit=True)
-			return mail_compose(request, mail_id)
-		else:
-			print form.errors
-	else:
-		form = MailEditForm()
-	return render_to_response('edit.html', {'form' : form}, context)	
->>>>>>> ec54e5ec2cf2a1c0d7218e4e75de890e8bc9c366
-
-@login_required
-def mail_compose(request, mail_id):
-    #we'll do this later usiny tinymce or ckeditor
-    return ""
-  
-@login_required  
-def mail_submit(request, mail_id):
-    return ""

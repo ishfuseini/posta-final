@@ -11,6 +11,7 @@
         <tr>
           <th>#</th>
           <th>Name</th>
+          <th>Subject Line</th>
           <th>Date Scheduled</th>
           <th>Status</th>
         </tr>
@@ -19,18 +20,22 @@
     {% for mail in emails %}
     <tr>
     	<td>
-    		{{ mail.id}}
+    		<a href="/mail/edit/{{ mail.url }}">{{ mail.id }}</a>
     	</td>
 
       <td>
       	   {{ mail.name }}
       </td>
            
+ <td>
+           {{ mail.subject_line }}
+      </td>
+
       <td>
            {{ mail.date_scheduled }}
       </td>
       <td>
-      	   {{ mail.status }}
+      	   {{ mail.get_status_display }}
       </td>
       
      

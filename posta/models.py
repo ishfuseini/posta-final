@@ -14,6 +14,7 @@ class Mail(models.Model):
     target = models.CharField(max_length=140)
     template = models.ForeignKey('Template')
     subject_line = models.CharField(max_length=140)
+    headline = models.CharField(max_length=140, unique=True)
     mail_body = models.TextField()
     status = models.IntegerField(choices=STATUS_CHOICES, default=DRAFT)
     
@@ -21,9 +22,11 @@ class Mail(models.Model):
         return self.name
 
 class Template(models.Model):
+    name = models.TextField()
     template_body = models.TextField()
-    pass
-
+    
+    def __unicode__(self):
+        return self.name
 
 
 

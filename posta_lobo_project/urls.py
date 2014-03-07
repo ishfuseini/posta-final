@@ -12,7 +12,9 @@ urlpatterns = patterns('',
     url(r'^users/', RedirectView.as_view(url='/')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/', include('registration.backends.simple.urls')),
-    url(r'^', include('posta.urls')),)
+    url(r'^', include('posta.urls')),
+
+    )
 
 if settings.DEBUG:
     urlpatterns += patterns(
