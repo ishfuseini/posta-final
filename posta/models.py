@@ -12,7 +12,7 @@ class Mail(models.Model):
     date_created = models.DateTimeField(auto_now=True)
     date_scheduled = models.DateField()
     target = models.CharField(max_length=140)
-    template = models.ForeignKey('Template')
+    template = models.ForeignKey('mail_template')
     subject_line = models.CharField(max_length=140)
     headline = models.CharField(max_length=140)
     mail_body = models.TextField()
@@ -26,7 +26,7 @@ class Mail(models.Model):
 class Image(models.Model):
     image = models.ImageField(upload_to='gallery/')
 
-class Template(models.Model):
+class mail_template(models.Model):
     name = models.TextField()
     template_body = models.TextField()
     

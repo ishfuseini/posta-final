@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from posta.forms import MailForm
 from django.shortcuts import render_to_response, get_object_or_404
-from django.template import RequestContext
+from django.template import *
 from django.contrib.auth.decorators import login_required
 from posta.models import *
 from django.contrib.formtools.preview import FormPreview
@@ -50,22 +50,36 @@ def mail_edit(request, mail_id):
     #      Make is so you can only edit your own!
     context = RequestContext(request)
     mail = get_object_or_404(Mail, pk=mail_id)
+    context_dict = {} 
+    context_dict['mail'] = mail    
     
-    if request.method == 'POST':
-        form = MailForm(request.POST, instance=mail)
-
+    if request.method == 'POST':       
+        form = MailForm(request.POST, instance=mail)        
         if form.is_valid():
-            form.save(commit=True)
+            form.save(commit=True)            
             return HttpResponseRedirect(reverse('posta.mail'))
         else:
             print form.errors
     else:
         form = MailForm(instance=mail)
-    return render_to_response('mail_edit.html', {'form' : form}, context)
+        context_dict['form'] = form
+        
+    return render_to_response('mail_edit.html', context_dict, context)
   
 @login_required
 def mail_preview(request, mail_id):
     mail = get_object_or_404(Mail, pk=mail_id)
-    template = mail.template.template_body
-    return template.render({'mail':mail})
+    subject_line =  mail.subject_line
+    headline = mail.headline
+    mail_body = mail.mail_body
+    image = mail.image.image
+    context_dict = {} 
+    context_dict['mail'] = mail
+    context_dict['subject_line'] = subject_line
+    context_dict['headline'] = headline
+    context_dict['mail_body'] = mail_body
+    context_dict['image'] = image 
+    t = Template(mail.template.template_body)
+    preview = t.render(Context(context_dict))
+    return HttpResponse(preview)
   

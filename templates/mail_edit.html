@@ -6,16 +6,19 @@
 
 <div class="page-header">
  
-  <form id="mail_form" method="post" action="/mail/edit/{{ mail_id }}/">
+  <form id="mail_form" method="post" action="{% url 'posta.mail.edit' mail.id %}">
   {% csrf_token %}
 
   {{ form.as_p}}
 
 
 
-  <input type="submit" name="submit" value="Update Mail" />
+    <a href="{% url 'posta.mail.preview' mail.id %}" class="btn btn-lg btn-success"  target="_blank" >Preview Email</a> <input type="submit" name="submit" value="Update Mail"  class="btn btn-lg btn-primary" />
   </form>
+
+  <br>
   
+
   
 </div>
 

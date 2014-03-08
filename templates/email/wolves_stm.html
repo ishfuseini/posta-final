@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>{{mail.subject_line}}</title>
+</head>
+
+<body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0" style="-webkit-text-size-adjust:none; margin:0; padding:0; background-color:#FAFAFA; width:100%; ">
+    <center>
+        <table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="backgroundTable" style="margin:0; padding:0; background-color:#FAFAFA; height:100%; width:100%; ">
+            <tr>
+                <td align="center" valign="top" style="border-collapse:collapse; ">
+                    <table border="0" cellpadding="0" cellspacing="0" width="600" id="templateContainer" style="border:0; background-color:#FDFDFD; ">
+                        <tr>
+                            <td align="center" valign="top" style="border-collapse:collapse; ">
+                                <table border="0" cellpadding="0" cellspacing="0" width="600" id="templateHeader" style="background-color:#FFFFFF; border-bottom:5px solid #505050; ">
+                                    <tr>
+                                        <td align="center" class="headerContent" style="border-collapse:collapse; color:#202020; font-family:Arial; font-size:34px; font-weight:bold; line-height:100%; padding:10px; text-align:center; vertical-align:middle; ">
+                                            <div class="mktEditable" id="column_text1">
+                                                <img title="{{mail.subject_line}}" src="{{ mail.image}}" alt="{{mail.subject_line}}" height="120" width="600">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" valign="top" style="border-collapse:collapse; ">
+                                <table border="0" cellpadding="10" cellspacing="0" width="600" id="templateBody">
+                                    <tr>
+                                        <td valign="top" class="bodyContent" style="border-collapse:collapse; background-color:#FDFDFD; ">
+                                            <table border="0" cellpadding="10" cellspacing="0" width="100%">
+                                                <tr>
+                                                    <td valign="top" style="border-collapse:collapse; ">
+                                                        <div mc:edit="std_content00" style="color:#505050; font-family:Arial; font-size:14px; line-height:125%; text-align:justify; ">
+                                                            {{ mail.body }}
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td align="center" valign="top" style="border-collapse: collapse;"></td>
+            </tr>
+        </table>
+        <br>
+    </center>
+
+</body>
+
+</html>

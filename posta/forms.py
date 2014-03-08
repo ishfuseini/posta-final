@@ -1,5 +1,5 @@
 from django import forms
-from posta.models import Mail, Template, Image
+from posta.models import Mail, mail_template, Image
 from django.contrib.auth.models import User
 
 class MailForm(forms.ModelForm):
@@ -8,7 +8,7 @@ class MailForm(forms.ModelForm):
     target = forms.CharField(max_length=140, help_text="Who is this email going to?")
     date_scheduled = forms.DateField(help_text="When do you need this email sent?",
                                      widget=forms.TextInput(attrs={'id':'datepicker'}))    
-    template = forms.ModelChoiceField(queryset=Template.objects.all(), help_text="Select a Template")
+    template = forms.ModelChoiceField(queryset=mail_template.objects.all(), help_text="Select a Template")
     headline = forms.CharField(max_length=140, help_text="Please enter a headline for your email.")
     mail_body = forms.CharField(widget=forms.Textarea)
     image = forms.ModelChoiceField(queryset=Image.objects.all())
