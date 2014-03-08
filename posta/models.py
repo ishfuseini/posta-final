@@ -14,12 +14,17 @@ class Mail(models.Model):
     target = models.CharField(max_length=140)
     template = models.ForeignKey('Template')
     subject_line = models.CharField(max_length=140)
-    headline = models.CharField(max_length=140, unique=True)
+    headline = models.CharField(max_length=140)
     mail_body = models.TextField()
     status = models.IntegerField(choices=STATUS_CHOICES, default=DRAFT)
+    image = models.ForeignKey('Image')
     
     def __unicode__(self):
         return self.name
+
+      
+class Image(models.Model):
+    image = models.ImageField(upload_to='gallery/')
 
 class Template(models.Model):
     name = models.TextField()

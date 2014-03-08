@@ -7,5 +7,6 @@ urlpatterns = patterns(' ',
     url(r'^schedule/', views.schedule, name='posta.schedule'),
     url(r'^mail/$', views.mail, name='posta.mail'),
     url(r'^mail/create/$', views.mail_create, name='posta.mail.create'),
-    url(r'^mail/edit/(?P<mail_url>\w+)/$', views.mail_create, name='posta.mail.edit')
+    url(r'^mail/edit/(?P<mail_id>\w+)/$', views.mail_edit, name='posta.mail.edit'),
+    url(r'^mail/preview/(?P<mail_id>\w+)/$', views.mail_preview, name='posta.mail.preview')
 )

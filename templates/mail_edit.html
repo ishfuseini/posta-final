@@ -6,14 +6,14 @@
 
 <div class="page-header">
  
-  <form id="mail_form" method="post" action="/mail/">
+  <form id="mail_form" method="post" action="/mail/edit/{{ mail_id }}/">
   {% csrf_token %}
 
   {{ form.as_p}}
 
 
 
-  <input type="submit" name="submit" value="Create Mail" />
+  <input type="submit" name="submit" value="Update Mail" />
   </form>
   
   
