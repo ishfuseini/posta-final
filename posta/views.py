@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from posta.forms import MailForm
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import *
+from django.template.loader import *
 from django.contrib.auth.decorators import login_required
 from posta.models import *
 from django.contrib.formtools.preview import FormPreview
@@ -15,12 +16,17 @@ def about(request):
     return render(request, 'about.html')
 
 def schedule(request):
-    return render(request, 'schedule.html')
+    context = RequestContext(request)
+    #Pass Current Emails to Template
+    all_mail = Mail.objects.all()
+    context_dict = {'emails' : all_mail } 
+    for mail in all_mail:    
+        mail.url = mail.id  
+    return render_to_response('schedule.html', context_dict, context)
 
 @login_required
 def mail(request):
     context = RequestContext(request)
-    #Pass Current Emails to Template
     all_mail = Mail.objects.all()
     context_dict = {'emails' : all_mail } 
     for mail in all_mail:    
@@ -29,20 +35,25 @@ def mail(request):
 
   
 @login_required
-def mail_create(request):
+def mail_create(request):    
     context = RequestContext(request)
     if request.method == 'POST':
-        form = MailForm(request.POST)
-
+        form = MailForm(request.POST)         
         if form.is_valid():
-            form.save(commit=True)
-            return HttpResponseRedirect(reverse('posta.mail'))
+          if '_preview' in request.POST:
+              email = form.save(commit=False)
+              template_body = form.cleaned_data['template'].template_body
+              template = Template(template_body)             # <--
+              return HttpResponse(template.render(Context({'mail':email})))
+          elif '_save' in request.POST:
+              form.save(commit=True)
+              return HttpResponseRedirect(reverse('posta.mail'))
         else:
             print form.errors
     else:
-        form = MailForm()
-        
+        form = MailForm()       
     return render_to_response('mail_create.html', {'form' : form}, context)
+
   
 @login_required
 def mail_edit(request, mail_id):
@@ -73,8 +84,7 @@ def mail_preview(request, mail_id):
     headline = mail.headline
     mail_body = mail.mail_body
     image = mail.image.image
-    context_dict = {} 
-    context_dict['mail'] = mail
+    context_dict = {'mail' : mail} 
     context_dict['subject_line'] = subject_line
     context_dict['headline'] = headline
     context_dict['mail_body'] = mail_body

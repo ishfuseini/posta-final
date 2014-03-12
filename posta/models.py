@@ -26,6 +26,7 @@ class Mail(models.Model):
 class Image(models.Model):
     image = models.ImageField(upload_to='gallery/')
 
+#TODO: Rename to MailTemplate
 class mail_template(models.Model):
     name = models.TextField()
     template_body = models.TextField()
