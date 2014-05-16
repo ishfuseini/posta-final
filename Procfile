@@ -1,0 +1,1 @@
+web: gunicorn posta:app
