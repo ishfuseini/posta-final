@@ -1,5 +1,4 @@
 Django==1.6.2
-PIL==1.1.7
 Pillow==2.3.0
 django-ckeditor-updated==4.2.7
 django-filebrowser==3.5.4
