@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+
+{% block title %} Edit {% endblock %}
+{% block headline %} Create {{ mail.name }}  {% endblock %}
+{% block body_block %}
+
+<div class="page-header">
+
+
+
+
+    <form id="mail_form" method="post" action="/mail/create/" class="form-horizontal">
+      {% csrf_token %}
+      
+      
+      <p class="bg-danger">
+      
+      
+
+
+      </p>
+
+<fieldset>
+<!-- Name-->
+<div class="control-group">
+  <label class="control-label" for="name">Name:</label>
+  <div class="controls">
+    <input id="name" name="name" type="text" placeholder="Email Name" class="input-xlarge">
+    <p class="help-block">Please enter a name for your email.</p>
+    <p class="bg-danger">{{ form.name.errors }}</p>
+  </div>
+</div>
+
+<!-- Subject Line-->
+<div class="control-group">
+  <label class="control-label" for="subject_line">Subject Line:</label>
+  <div class="controls">
+    <input id="subject_line" name="subject_line" type="text" placeholder="" class="input-xlarge">
+    <p class="help-block">Please enter the subject line for your email</p>
+        <p class="bg-danger">{{ form.subject_line.errors }}</p>
+  </div>
+</div>
+  
+  <!-- Head Line-->
+<div class="control-group">
+  <label class="control-label" for="headline">Headline:</label>
+  <div class="controls">
+    <input id="headline" name="headline" type="text" placeholder="" class="input-xlarge">
+    <p class="help-block">Title/Headline</p>
+      <p class="bg-danger">{{ form.headline.errors }}</p>
+  </div>
+</div>
+
+<!-- Target  -->
+<div class="control-group">
+  <label class="control-label" for="target">Target:</label>
+  <div class="controls">
+    <select id="target" name="target" class="input-xlarge" multiple="multiple">
+      <option>Wolves STM</option>
+      <option>Lynx STM</option>
+      <option>WolvesOffers</option>
+      <option>LynxOffers</option>
+      <option>Target Center Events</option>
+      <option>Account Executive</option>
+    </select>
+  </div>
+    <p class="bg-danger">{{ form.target.errors }}</p>
+</div>
+
+<!-- Date Scheduled -->
+<div class="control-group">
+  <label class="control-label" for="date_scheduled">Date scheduled:</label>
+  <div class="controls">
+    <input id="datepicker" name="date_scheduled" type="text" placeholder="MM/DD/YY" class="input-xlarge">
+    <p class="help-block">When do you need this email sent?</p>
+  </div>
+  <p class="bg-danger">{{ form.date_scheduled.errors }}</p>
+</div>
+
+<!-- Template Select -->
+<div class="control-group">
+
+  <div class="controls">
+<p>
+<ul id="id_template">
+<li><label for="id_template_0"><input checked="checked" id="id_template_0" name="template" type="radio" value=""> ---------</label></li>
+<li><label for="id_template_1"><input id="id_template_1" name="template" type="radio" value="1"> STM</label></li>
+</ul>
+  </div>
+  <p class="bg-danger">{{ form.template.errors }}</p>
+</div>
+
+ <!-- Image -->
+<div class="control-group">
+  <label class="control-label" for="image">Select An Image</label>
+  
+ <button class="btn btn-primary btn-lg" type="button" id="modal-button" data-toggle="modal" data-target="#myModal">
+  Launch Gallery
+ </button>
+
+   
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Gallery</h4>
+      </div>
+      <div class="modal-body">
+    
+  <div class="controls">
+    <select id="image" name="image" class="input-xlarge image-picker" >
+      <option value=""></option>
+  <option data-img-src="http://event.wolveslynx.com/rs/minnesotatimberwolves/images/TW_25_INVITED_USB_MB.png" value="http://event.wolveslynx.com/rs/minnesotatimberwolves/images/TW_25_INVITED_USB_MB.png">http://event.wolveslynx.com/rs/minnesotatimberwolves/images/TW_25_INVITED_USB_MB.png</option>
+  <option data-img-src="http://event.wolveslynx.com/rs/minnesotatimberwolves/images/TW_25_Member_Info_USB.png" value="http://event.wolveslynx.com/rs/minnesotatimberwolves/images/TW_25_Member_Info_USB.png">Member Info</option>
+  <option data-img-src="http://event.wolveslynx.com/rs/minnesotatimberwolves/images/TW_25_R_U_RDY_USB.png" value="http://event.wolveslynx.com/rs/minnesotatimberwolves/images/TW_25_R_U_RDY_USB.png">Are You Ready?</option>
+    </select>
+  </div>
+        
+
+    <p class="bg-danger">{{ form.image.errors }}</p>
+</div>
+      </div>
+      <div class="modal-footer">
+       <button class="btn btn-primary btn-lg"   data-dismiss="modal" type="button" >
+Close
+ </button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+</div>
+  
+<!-- Mail Body -->
+<div class="control-group">
+  <label class="control-label" for="mail_body">Mail Body:</label>
+  <div class="controls">                     
+    <textarea id="mail_body" name="mail_body"></textarea>
+  </div>
+      <p class="bg-danger">{{ form.mail_body.errors }}</p>
+</div>
+
+<!--Button Link-->
+<div class="control-group">
+  <label class="control-label" for="button_url">Button Link:</label>
+  <div class="controls">
+    <input id="button_url" name="button_url" type="text" placeholder="http://ishfuseini.com/" class="input-xlarge">
+    <p class="help-block">Insert the link for your button</p>
+  </div>
+      <p class="bg-danger">{{ form.button_url.errors }}</p>
+</div>
+
+</fieldset>
+
+  <input type="submit" name="preview" value="Preview Mail" target="_blank" class="btn btn-lg btn-success"/>
+  <input type="submit" name="save" value="Create Mail"  class="btn btn-lg btn-primary"/>
+  
+
+  </form>
+  
+</div>
+
+<script type="text/javascript">
+     $("#image").imagepicker({
+          hide_select : true,
+          show_label  : false
+        })
+     
+     //$("#modal-button").click(function(){
+       // $("myModal").modal("show");
+        //return false;
+     //});
+      
+</script>
+
+
+{% endblock %}

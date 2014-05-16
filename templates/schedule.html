@@ -4,6 +4,35 @@
 {% block headline %} Schedule  {% endblock %}
 {% block body_block %}
 
+ <script>
+$('a.external').on('click', function(e) {
+        e.preventDefault();
+        var url = $(this).attr('href');
+        $(".modal-body").html('<iframe width="100%" height="100%" frameborder="0" scrolling="yes" allowtransparency="true" src="'+url+'"></iframe>');
+ 
+    });
+ 
+    $('#myModal').on('show.bs.modal', function () {
+ 
+        $(this).find('.modal-dialog').css({
+                  width:'100%x', //choose your width
+                  height:'100%', 
+                  'padding':'20'
+           });
+         $(this).find('.modal-content').css({
+                  height:'100%', 
+                  'border-radius':'0',
+                  'padding':'0'
+           });
+         $(this).find('.modal-body').css({
+                  width:'auto',
+                  height:'100%', 
+                  'padding':'0'
+           });
+    })
+</script>
+
+
 <div class="page-header">
   <h1><small>Here are the upcoming campaigns this month </small></h1>
 
@@ -15,13 +44,14 @@
 
           <th>Date Scheduled</th>
           <th>Status</th>
+           <th>Created By</th>
         </tr>
       </thead>
         {% if emails %}
     {% for mail in emails %}
     <tr>
     	<td>
-    		<a href="/mail/edit/{{ mail.url }}">{{ mail.id }}</a>
+    		<a href="/mail/preview/{{ mail.url }}" class="btn btn-primary btn-xs external" data-toggle="modal" data-target="#myModal">{{ mail.id }}</a>
     	</td>
       <td>
       	   {{ mail.name }}
@@ -32,12 +62,23 @@
       <td>
       	   {{ mail.get_status_display }}
       </td>
+          <td>
+      	   {{ mail.created_by }}
+      </td>
     </tr>
        {% endfor %}
 {% endif %}
    
   </table>
-
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+      </div>
+      </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
 
 

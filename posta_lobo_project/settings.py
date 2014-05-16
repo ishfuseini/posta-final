@@ -19,11 +19,11 @@ STATIC_PATH = os.path.join(PROJECT_PATH, 'static')
 
 
 # Email Settings
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.mandrillapp.com'
-EMAIL_HOST_USER = 'fuseini@timberwolves.com'
-EMAIL_HOST_PASSWORD = 'lol'
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'ishfuseini'
+EMAIL_HOST_PASSWORD = 'lo1lo100'
 EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.auth.models',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -53,7 +54,6 @@ INSTALLED_APPS = (
     'posta',
     'registration',
     'django.contrib.formtools',
-
 )
 
 MIDDLEWARE_CLASSES = (
@@ -125,3 +125,7 @@ MEDIA_ROOT = os.path.join(PROJECT_PATH,'media')
 ACCOUNT_ACTIVATION_DAYS = 7
 
 LOGIN_REDIRECT_URL = '/'
+
+# please replace "<sendgrid_username>" and "<sendgrid_password>" with your SendGrid credentials
+SENDGRID_USERNAME = 'timberwolvesdbm';
+SENDGRID_PASSWORD = 'timberwolveslol1';

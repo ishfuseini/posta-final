@@ -18,7 +18,7 @@
                                     <tr>
                                         <td align="center" class="headerContent" style="border-collapse:collapse; color:#202020; font-family:Arial; font-size:34px; font-weight:bold; line-height:100%; padding:10px; text-align:center; vertical-align:middle; ">
                                             <div class="mktEditable" id="column_text1">
-                                                <img title="{{mail.subject_line}}" src="{{ mail.image}}" alt="{{mail.subject_line}}" height="120" width="600">
+                                                <img title="{{mail.subject_line}}" src='{{mail.image.url}}' alt="{{mail.subject_line}}" height="120" width="600">
                                             </div>
                                         </td>
                                     </tr>
@@ -33,9 +33,11 @@
                                             <table border="0" cellpadding="10" cellspacing="0" width="100%">
                                                 <tr>
                                                     <td valign="top" style="border-collapse:collapse; ">
+                                                      {% autoescape off %}
                                                         <div mc:edit="std_content00" style="color:#505050; font-family:Arial; font-size:14px; line-height:125%; text-align:justify; ">
-                                                            {{ mail.body }}
+                                                            {{mail.mail_body | safe}}
                                                         </div>
+                                                      {% endautoescape %}
                                                     </td>
                                                 </tr>
                                             </table>

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %} Edit {% endblock %}
-{% block headline %} Edit {{ mail.name }}  {% endblock %}
+{% block headline %} Create {{ mail.name }}  {% endblock %}
 {% block body_block %}
 
 <div class="page-header">
@@ -11,11 +11,11 @@
 
   {{ form.as_p}}
 
-
-  <input type="submit" name="_preview" value="Preview Mail" target="_blank" class="btn btn-lg btn-success"/>
-  <input type="submit" name="_submit" value="Create Mail"  class="btn btn-lg btn-primary"/>
-  </form>
+  <input type="submit" name="preview" value="Preview Mail" target="_blank" class="btn btn-lg btn-success"/>
+  <input type="submit" name="save" value="Create Mail"  class="btn btn-lg btn-primary"/>
   
+
+  </form>
   
 </div>
 
