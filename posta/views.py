@@ -59,11 +59,10 @@ def mail_create(request):
               #HTML Sends the String of Template + Form Data as Attachment
               html = template.render(Context({'mail':email}))
               
-              sg = sendgrid.SendGridClient('ishfuseini', 'lo1lo100')
+              sg = sendgrid.SendGridClient('ishfuseini', 'XXXXX')
               #Email - https://github.com/sendgrid/sendgrid-python#example
               message = sendgrid.Mail()
-              message.add_to(['fuseini@timberwolves.com',
-                              'kahnke@timberwolves.com'])
+              message.add_to(['a@a.com'])
               message.set_subject('Example')
               message.set_html("Dear Brah or Brahette: Here's your email.")
               message.set_from('Posta Mail App <posta@email.com>')
